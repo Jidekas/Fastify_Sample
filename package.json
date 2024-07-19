@@ -1,0 +1,29 @@
+{
+  "name": "Fastify-api-class",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
+    "update-schema": "node ./scripts/updatePrismaShema.js",
+    "migrate": "npx prisma migrate dev --name add_audit_fields",
+    "generate": "npx prisma generate"
+  },
+  "dependencies": {
+    "@fastify/jwt": "5.0.0",
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^4.0.0",
+    "@prisma/client": "^5.12.1",
+    "fastify": "^4.26.2",
+    "fastify-swagger": "^5.2.0",
+    "fastify-zod": "^1.4.0",
+    "zod": "^3.23.3",
+    "zod-to-json-schema": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/fastify-jwt": "^0.8.1",
+    "@types/node": "^20.12.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
