@@ -2,7 +2,6 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { createUser, findUserByEmail, getAllUsers } from "./user.service";
 import { CreateUserInput, LoginInput } from "./user.schema";
 import { verifyPassword } from "../../utils/hash";
-import { server } from "../../app";
 
 
 export const registerUserHandler = async(request: FastifyRequest<{Body: CreateUserInput}>, reply: FastifyReply) => {
@@ -39,7 +38,7 @@ export const loginHandler = async(request: FastifyRequest<{Body: LoginInput}>, r
     if(correctPass){
         const {password, salt, ...rest} = user
         //respond with access token
-        return {accessToken: server.jwt.sign(rest)}
+        return {accessToken: request.jwt.sign(rest)}
     } else {
         return reply.code(401).send({
             message:"invalid email or password"
